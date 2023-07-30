@@ -26,7 +26,8 @@ print(device)
 
 num_classes = 10
 model = UNet(num_classes=num_classes).to(device)
-model.load_state_dict(torch.load(model_path))
+model.load_state_dict(torch.load(model_path, map_location=device))
+model.to(device)
 print("model loaded")
 
 label_model = joblib.load("./kmeans_model.pkl")
